@@ -52,11 +52,23 @@ namespace TrendAnalyze
 
         private void LoadData()
         {
-            sConn = ConfigurationSettings.AppSettings["Provider"];
-            sConn += Application.StartupPath;
-            sConn += ConfigurationSettings.AppSettings["DataSource"];
-            sConn += ConfigurationSettings.AppSettings["Pwd"];
+            //string connectionStr = "Provider=Microsoft.ACE.OLEDB.12.0;Data source=" + databasePath;
+            //
 
+            //string StrConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
+            //StrConn += Application.StartupPath + "\\data\\data.mdb;Persist Security Info=False;Jet OLEDB:Database Password=123456";
+
+
+            //"Provider = Microsoft.ACE.OLEDB.12.0;Data Source =c:\\users\\xqy\\documents\\visual studio 2013\\Projects\\TrendAnalyze\\TrendAnalyze\\bin\\Debug\\Data\\dqhp.accdb;Jet OLEDB:Database Password=dqhpdata;"
+
+
+            //sConn = ConfigurationSettings.AppSettings["Provider"];
+            //sConn += Application.StartupPath;
+            //sConn += ConfigurationSettings.AppSettings["DataSource"];
+
+            //sConn += "Persist Security Info=False;";
+            //sConn += ConfigurationSettings.AppSettings["Pwd"];
+            sConn = @"Provider = Microsoft.Jet.OLEDB.4.0;Data Source =" + Application.StartupPath + @"\Data\dqhp.mdb;Jet OLEDB:Database Password=dqhpdata";
             if (pConn == null)
                 pConn = new OleDbConnection(sConn);
             if (pConn.State == ConnectionState.Closed)

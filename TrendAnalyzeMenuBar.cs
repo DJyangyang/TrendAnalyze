@@ -20,7 +20,7 @@ namespace TrendAnalyze
 
         public long ItemCount
         {
-            get { return 3; }
+            get { return 2; }
         }
 
         public void GetItemInfo(int pos, MyPluginEngine.ItemDef itemDef)
@@ -35,10 +35,10 @@ namespace TrendAnalyze
                     itemDef.ID = "TrendAnalyze.frmPOPCmd";
                     itemDef.Group = false;
                     break;
-                case 2:
-                    itemDef.ID = "TrendAnalyze.frmTableCmd";
-                    itemDef.Group = false;
-                    break;
+                //case 2:
+                //    itemDef.ID = "TrendAnalyze.frmTableCmd";
+                //    itemDef.Group = false;
+                //    break;
                 default:
                     break;
 

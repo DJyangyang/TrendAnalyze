@@ -31,4 +31,3 @@ D:\77211356\GitHub\TrendAnalyze\obj\Debug\TrendAnalyze.frmTable.resources
 D:\77211356\GitHub\TrendAnalyze\obj\Debug\TrendAnalyze.csproj.GenerateResource.Cache
 D:\77211356\GitHub\TrendAnalyze\obj\Debug\TrendAnalyze.dll
 D:\77211356\GitHub\TrendAnalyze\obj\Debug\TrendAnalyze.pdb
-D:\77211356\GitHub\TrendAnalyze\obj\Debug\TrendAnalyze.csprojResolveAssemblyReference.cache

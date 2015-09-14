@@ -54,11 +54,11 @@ namespace TrendAnalyze
 
         private void LoadData()
         {
-            sConn = ConfigurationSettings.AppSettings["Provider"];
-            sConn += Application.StartupPath;
-            sConn += ConfigurationSettings.AppSettings["DataSource"];
-            sConn += ConfigurationSettings.AppSettings["Pwd"];
-
+            //sConn = ConfigurationSettings.AppSettings["Provider"];
+            //sConn += Application.StartupPath;
+            //sConn += ConfigurationSettings.AppSettings["DataSource"];
+            //sConn += ConfigurationSettings.AppSettings["Pwd"];
+            sConn = @"Provider = Microsoft.Jet.OLEDB.4.0;Data Source =" + Application.StartupPath + @"\Data\dqhp.mdb;Jet OLEDB:Database Password=dqhpdata";
             if (pConn == null)
                 pConn = new OleDbConnection(sConn);
             if (pConn.State == ConnectionState.Closed)

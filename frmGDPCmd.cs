@@ -70,7 +70,9 @@ namespace TrendAnalyze
 
         public void OnClick()
         {
-            System.Windows.Forms.MessageBox.Show("正在开发中！");
+            //System.Windows.Forms.MessageBox.Show("模块正在开发中！");
+            pfrmGDP = new frmGDP();
+            pfrmGDP.ShowDialog();
         }
 
         public void OnCreate(IApplication hook)
