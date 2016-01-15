@@ -12,14 +12,14 @@ using System.Threading;
 
 namespace TrendAnalyze
 {
-    public partial class frmGDP : DevComponents.DotNetBar.OfficeForm
+    public partial class frmTEMP : DevComponents.DotNetBar.OfficeForm
     {
         private string sConn = null;
         private OleDbConnection pConn = null;
         private DataTable dt = null;
 
-        private PointPairList list1 = null, list3 = null, list2 = null, list = null;
-        public frmGDP()
+        private PointPairList list1 = null, list2 = null, list3 = null, list4 = null;
+        public frmTEMP()
         {
             InitializeComponent();
             this.dgDataSource.ReadOnly = true;
@@ -33,14 +33,14 @@ namespace TrendAnalyze
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             //去除图标
             this.ShowIcon = false;
+            //模拟的按钮默认false，以免没点开始直接点模拟按钮
+            btnSimulate.Enabled = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadData();
             CreateMutiLineChart();
-
-            btnSimulate.Enabled = false;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -48,8 +48,8 @@ namespace TrendAnalyze
             if (pConn.State == ConnectionState.Open)
                 pConn.Close();
             if (pConn != null)
-                pConn =null;
-            
+                pConn = null;
+
         }
 
         private void LoadData()
@@ -64,13 +64,13 @@ namespace TrendAnalyze
             if (pConn.State == ConnectionState.Closed)
                 pConn.Open();
             OleDbCommand cmd = pConn.CreateCommand();
-            cmd.CommandText = "Select id,year,gdp1,gdp2,gdp3,gdp From tbTrend";
+            cmd.CommandText = "Select id,years,rcp2,rcp4,rcp6,rcp8 From temperature";
             OleDbDataAdapter oda = new OleDbDataAdapter(cmd);
             DataSet ds = new DataSet();
-            oda.Fill(ds, "dtTrend");
+            oda.Fill(ds, "temperature");
             if (dt == null)
                 dt = new DataTable();
-            dt = ds.Tables["dtTrend"];
+            dt = ds.Tables["temperature"];
         }
         private void CreateMutiLineChart()
         {
@@ -81,18 +81,18 @@ namespace TrendAnalyze
             GraphPane myPane = zedGraphControl1.GraphPane;
             myPane.CurveList.Clear();
             myPane.GraphObjList.Clear();
-			// Set up the title and axis labels
-            myPane.Title.Text = "GDP 趋势模拟";
-			myPane.XAxis.Title.Text = "年份";
-			myPane.YAxis.Title.Text = "GDP 亿元";
+            // Set up the title and axis labels
+            myPane.Title.Text = "气温趋势模拟";
+            myPane.XAxis.Title.Text = "年份";
+            myPane.YAxis.Title.Text = "温度值";
 
             //PointPairList list1 = null, list3 = null, list2 = null, list = null;
-			// Make up some data arrays based on the Sine function
-			list1 = new PointPairList();
-			list3 = new PointPairList();
+            // Make up some data arrays based on the Sine function
+            list1 = new PointPairList();
+            list3 = new PointPairList();
             list2 = new PointPairList();
-            list = new PointPairList();
-			
+            list4 = new PointPairList();
+
             //double x = double.Parse(dt.Rows[0]["year"].ToString().Trim());
             //double y1 = double.Parse(dt.Rows[0]["gdp1"].ToString().Trim());
             //double y3 = double.Parse(dt.Rows[0]["gdp3"].ToString().Trim());
@@ -103,27 +103,27 @@ namespace TrendAnalyze
             //list2.Add( x, y2 );
             //list3.Add(x, y3);
 
-            LineItem myCurve1=null, myCurve2=null, myCurve3=null, myCurve=null;
+            LineItem myCurve1 = null, myCurve2 = null, myCurve3 = null, myCurve4 = null;
 
             // Generate a red curve with diamond
             // symbols, and "GDP1" in the legend
-            myCurve1 = myPane.AddCurve("GDP1",
+            myCurve1 = myPane.AddCurve("rcp2.6",
                 list1, Color.Red, SymbolType.Diamond);
 
             // Generate a blue curve with circle
             // symbols, and "GDP2" in the legend
-            myCurve2 = myPane.AddCurve("GDP2",
+            myCurve2 = myPane.AddCurve("rcp4.5",
                 list2, Color.Blue, SymbolType.Circle);
 
             // Generate a blue curve with circle
             // symbols, and "GDP3" in the legend
-            myCurve3 = myPane.AddCurve("GDP3",
+            myCurve3 = myPane.AddCurve("rcp6.0",
                 list3, Color.Green, SymbolType.Star);
 
             // Generate a blue curve with circle
             // symbols, and "GDP" in the legend
-            myCurve = myPane.AddCurve("GDP",
-                list, Color.Orange, SymbolType.Square);
+            myCurve4 = myPane.AddCurve("rcp8.5",
+                list4, Color.Orange, SymbolType.Square);
 
 
             // Change the color of the title
@@ -142,7 +142,7 @@ namespace TrendAnalyze
             myCurve1.Line.Width = 1.0F;
             myCurve2.Line.Width = 1.0F;
             myCurve3.Line.Width = 1.0F;
-            myCurve.Line.Width = 1.0F;
+            myCurve4.Line.Width = 1.0F;
 
             // Fill the area under the curves
 
@@ -154,12 +154,12 @@ namespace TrendAnalyze
             myCurve1.Symbol.Size = 2.0F;
             myCurve2.Symbol.Size = 2.0F;
             myCurve3.Symbol.Size = 2.0F;
-            myCurve.Symbol.Size = 2.0F;
+            myCurve4.Symbol.Size = 2.0F;
 
             myCurve1.Symbol.Fill = new Fill(Color.White);
             myCurve2.Symbol.Fill = new Fill(Color.White);
             myCurve3.Symbol.Fill = new Fill(Color.White);
-            myCurve.Symbol.Fill = new Fill(Color.White);
+            myCurve4.Symbol.Fill = new Fill(Color.White);
 
             // Add a background gradient fill to the axis frame
             myPane.Chart.Fill = new Fill(Color.White,
@@ -181,30 +181,30 @@ namespace TrendAnalyze
         private void loadHistoryData()
         {
             //加载数据库的原始数据
-            while (list.Count > 1)
+            while (list1.Count > 1)
             {
-                list.RemoveAt(1);
                 list1.RemoveAt(1);
                 list2.RemoveAt(1);
                 list3.RemoveAt(1);
+                list4.RemoveAt(1);
             }
-            
 
-            for (int i = 0; i < 17; i++)
+
+            for (int i = 0; i < 16; i++)
             {
                 Thread.Sleep(100);
-               
+
                 //创建曲线图
 
-                double x = double.Parse(dt.Rows[i]["year"].ToString().Trim());
-                double y1 = double.Parse(dt.Rows[i]["gdp1"].ToString().Trim());
-                double y3 = double.Parse(dt.Rows[i]["gdp3"].ToString().Trim());
-                double y2 = double.Parse(dt.Rows[i]["gdp2"].ToString().Trim());
-                double y = double.Parse(dt.Rows[i]["gdp"].ToString().Trim());
-                list.Add(x, y);
+                double x = double.Parse(dt.Rows[i]["years"].ToString().Trim());
+                double y1 = double.Parse(dt.Rows[i]["rcp2"].ToString().Trim());
+                double y2 = double.Parse(dt.Rows[i]["rcp4"].ToString().Trim());
+                double y3 = double.Parse(dt.Rows[i]["rcp6"].ToString().Trim());
+                double y4 = double.Parse(dt.Rows[i]["rcp8"].ToString().Trim());
                 list1.Add(x, y1);
                 list2.Add(x, y2);
                 list3.Add(x, y3);
+                list4.Add(x, y4);
                 zedGraphControl1.GraphPane.XAxis.Scale.MaxAuto = true;
 
                 this.zedGraphControl1.AxisChange();
@@ -217,57 +217,64 @@ namespace TrendAnalyze
             //加载数据库的原始数据
             //id=1-17	year=1996-2012
             int iRowCount = dt.Rows.Count - 1;
-            if (iRowCount > 17)
+            if (iRowCount > 16)
             {
-                for (int i = iRowCount; i >= 17; i--)
+                for (int i = iRowCount; i >= 16; i--)
                 {
                     dt.Rows.RemoveAt(i);
-                    list.RemoveAt(i);
                     list1.RemoveAt(i);
                     list2.RemoveAt(i);
                     list3.RemoveAt(i);
+                    list4.RemoveAt(i);
                 }
             }
-            //修改数据源dt中的值
-            //id	year	gdp1	gdp2	gdp3	pop1	pop2	pop3	gdp	pop
-            double dRate = 0;
-            try
-            {
-                dRate = double.Parse(txtIncreaseRate.Text.Trim()) / 100;
-            }
-            catch
-            {
-                MessageBox.Show("增长率必须是数值！");
-                return;
-            }
+            ////修改数据源dt中的值
+            ////id	year	gdp1	gdp2	gdp3	pop1	pop2	pop3	gdp	pop
+            //double dRate = 0;
+            //try
+            //{
+            //    dRate = double.Parse(txtIncreaseRate.Text.Trim()) / 100;
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("增长率必须是数值！");
+            //    return;
+            //}
 
             //模拟结束年份
             Int32 iEndYear = (Int32)txtEndYear.Value;
-
-            for (int i = 0; i < iEndYear - 2012 + 1; i++)
+            double year;
+            for (int i = 0; i < iEndYear - 2015 + 1; i++)
             {
                 Thread.Sleep(200);
                 //产生模拟数据
                 int iRowMaxIndex = dt.Rows.Count - 1;
                 DataRow dr = dt.NewRow();
+                year = double.Parse(dt.Rows[iRowMaxIndex]["years"].ToString().Trim());
+
                 dr["id"] = int.Parse(dt.Rows[iRowMaxIndex]["id"].ToString().Trim()) + 1;
-                dr["year"] = int.Parse(dt.Rows[iRowMaxIndex]["year"].ToString().Trim()) + 1;
-                dr["gdp1"] = double.Parse(dt.Rows[iRowMaxIndex]["gdp1"].ToString().Trim()) * (1 + dRate);
-                dr["gdp3"] = double.Parse(dt.Rows[iRowMaxIndex]["gdp3"].ToString().Trim()) * (1 + dRate);
-                dr["gdp2"] = double.Parse(dt.Rows[iRowMaxIndex]["gdp2"].ToString().Trim()) * (1 + dRate);
-                dr["gdp"] = double.Parse(dt.Rows[iRowMaxIndex]["gdp"].ToString().Trim()) * (1 + dRate);
+                dr["years"] = int.Parse(dt.Rows[iRowMaxIndex]["years"].ToString().Trim()) + 1;
+                //年均温表达式如下
+                //rcp2.6: y = 144.18ln(x) - 1091.1
+                //rcp4.5：y = 119.27ln(x) - 901.75
+                //rcp6.0：y = 100.13ln(x) - 756.2
+                //rcp8.5：y = 99.874ln(x) - 754.25              
+                dr["rcp2"] = 144.18 * Math.Log(year) - 1091.1;
+                dr["rcp4"] = 119.27 * Math.Log(year) - 901.75;
+                dr["rcp6"] = 100.13 * Math.Log(year) - 756.2;
+                dr["rcp8"] = 99.874 * Math.Log(year) - 754.25;
                 dt.Rows.Add(dr);
                 //创建曲线图
 
-                double x = double.Parse(dt.Rows[iRowMaxIndex]["year"].ToString().Trim());
-                double y1 = double.Parse(dt.Rows[iRowMaxIndex]["gdp1"].ToString().Trim());
-                double y3 = double.Parse(dt.Rows[iRowMaxIndex]["gdp3"].ToString().Trim());
-                double y2 = double.Parse(dt.Rows[iRowMaxIndex]["gdp2"].ToString().Trim());
-                double y = double.Parse(dt.Rows[iRowMaxIndex]["gdp"].ToString().Trim());
-                list.Add(x, y);
+                double x = double.Parse(dt.Rows[iRowMaxIndex]["years"].ToString().Trim());
+                double y1 = double.Parse(dt.Rows[iRowMaxIndex]["rcp2"].ToString().Trim());
+                double y2 = double.Parse(dt.Rows[iRowMaxIndex]["rcp4"].ToString().Trim());
+                double y3 = double.Parse(dt.Rows[iRowMaxIndex]["rcp6"].ToString().Trim());
+                double y4 = double.Parse(dt.Rows[iRowMaxIndex]["rcp8"].ToString().Trim());
                 list1.Add(x, y1);
                 list2.Add(x, y2);
                 list3.Add(x, y3);
+                list4.Add(x, y4);
                 zedGraphControl1.GraphPane.XAxis.Scale.MaxAuto = true;
 
                 this.zedGraphControl1.AxisChange();
@@ -287,7 +294,7 @@ namespace TrendAnalyze
         private void btnSimulate_Click(object sender, EventArgs e)
         {
             loadSimulationData();
-            btnSimulate.Enabled = false;
+            btnStart.Enabled = false;           //把开始按钮false掉，以免再点开始出现BUG。
         }
     }
 }

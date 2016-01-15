@@ -7,16 +7,16 @@ using MyPluginEngine;
 
 namespace TrendAnalyze
 {
-    class frmGDPCmd : MyPluginEngine.ICommand
+    class frmPRECmd : MyPluginEngine.ICommand
     {
         private MyPluginEngine.IApplication hk;
         private System.Drawing.Bitmap m_hBitmap;
         private ESRI.ArcGIS.SystemUI.ICommand cmd = null;
-        frmGDP pfrmGDP;
+        frmPRE pfrmPOP;
 
-        public frmGDPCmd()
+        public frmPRECmd()
         {
-            string str = @"..\Data\Image\TrendAnalyze\GDP.png";
+            string str = @"..\Data\Image\TrendAnalyze\People.png";
             if (System.IO.File.Exists(str))
                 m_hBitmap = new Bitmap(str);
             else
@@ -30,7 +30,7 @@ namespace TrendAnalyze
 
         public string Caption
         {
-            get { return "GDP增长趋势"; }
+            get { return "人口增长趋势"; }
         }
 
         public string Category
@@ -60,19 +60,19 @@ namespace TrendAnalyze
 
         public string Message
         {
-            get { return "GDP增长趋势"; }
+            get { return "人口增长趋势"; }
         }
 
         public string Name
         {
-            get { return "frmGDP"; }
+            get { return "frmPOP"; }
         }
 
         public void OnClick()
         {
             //System.Windows.Forms.MessageBox.Show("模块正在开发中！");
-            pfrmGDP = new frmGDP();
-            pfrmGDP.ShowDialog();
+            pfrmPOP = new frmPRE();
+            pfrmPOP.ShowDialog();
         }
 
         public void OnCreate(IApplication hook)
@@ -80,14 +80,14 @@ namespace TrendAnalyze
             if (hook != null)
             {
                 this.hk = hook;
-                pfrmGDP = new frmGDP();
-                pfrmGDP.Visible = false;
+                pfrmPOP = new frmPRE();
+                pfrmPOP.Visible = false;
             }
         }
 
         public string Tooltip
         {
-            get { return "GDP增长趋势"; }
+            get { return "人口增长趋势"; }
         }
         #endregion
     }

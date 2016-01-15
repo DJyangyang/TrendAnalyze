@@ -1,6 +1,6 @@
 ﻿namespace TrendAnalyze
 {
-    partial class frmGDP
+    partial class frmPRE
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -37,12 +37,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSimulate = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.txtEndYear = new System.Windows.Forms.NumericUpDown();
-            this.txtIncreaseRate = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -117,12 +114,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnSimulate);
             this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtEndYear);
-            this.groupBox1.Controls.Add(this.txtIncreaseRate);
             this.groupBox1.Controls.Add(this.btnStart);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(689, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
@@ -134,9 +128,9 @@
             // btnSimulate
             // 
             this.btnSimulate.Font = new System.Drawing.Font("宋体", 9F);
-            this.btnSimulate.Location = new System.Drawing.Point(74, 159);
+            this.btnSimulate.Location = new System.Drawing.Point(90, 167);
             this.btnSimulate.Name = "btnSimulate";
-            this.btnSimulate.Size = new System.Drawing.Size(51, 27);
+            this.btnSimulate.Size = new System.Drawing.Size(50, 26);
             this.btnSimulate.TabIndex = 8;
             this.btnSimulate.Text = "模拟";
             this.btnSimulate.UseVisualStyleBackColor = true;
@@ -148,27 +142,18 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox2.Location = new System.Drawing.Point(13, 228);
+            this.textBox2.Location = new System.Drawing.Point(13, 271);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(131, 226);
+            this.textBox2.Size = new System.Drawing.Size(131, 183);
             this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "请先设置GDP增长的速率,模拟结束的年份,然后点击\"模拟\"按钮，开始GDP趋势模拟。";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(127, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(11, 12);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "%";
+            this.textBox2.Text = "请先设置2010年的人口增长率,人口增长出现拐点的年份,人口模拟结束的年份,然后点击\"模拟\"按钮，开始人口模拟。";
             // 
             // txtEndYear
             // 
-            this.txtEndYear.Location = new System.Drawing.Point(29, 109);
+            this.txtEndYear.Location = new System.Drawing.Point(19, 112);
             this.txtEndYear.Maximum = new decimal(new int[] {
-            2020,
+            2100,
             0,
             0,
             0});
@@ -181,25 +166,17 @@
             this.txtEndYear.Size = new System.Drawing.Size(96, 21);
             this.txtEndYear.TabIndex = 5;
             this.txtEndYear.Value = new decimal(new int[] {
-            2020,
+            2015,
             0,
             0,
             0});
             // 
-            // txtIncreaseRate
-            // 
-            this.txtIncreaseRate.Location = new System.Drawing.Point(29, 48);
-            this.txtIncreaseRate.Name = "txtIncreaseRate";
-            this.txtIncreaseRate.Size = new System.Drawing.Size(96, 21);
-            this.txtIncreaseRate.TabIndex = 4;
-            this.txtIncreaseRate.Text = "9.5";
-            // 
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("宋体", 9F);
-            this.btnStart.Location = new System.Drawing.Point(14, 159);
+            this.btnStart.Location = new System.Drawing.Point(19, 167);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(51, 27);
+            this.btnStart.Size = new System.Drawing.Size(50, 26);
             this.btnStart.TabIndex = 3;
             this.btnStart.Text = "开始";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -208,22 +185,13 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 85);
+            this.label3.Location = new System.Drawing.Point(17, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(89, 12);
             this.label3.TabIndex = 2;
             this.label3.Text = "模拟结束年份：";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "经济增长率：";
-            // 
-            // frmGDP
+            // frmPRE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -232,8 +200,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabControl1);
             this.DoubleBuffered = true;
-            this.Name = "frmGDP";
-            this.Text = "GDP趋势模拟";
+            this.Name = "frmPRE";
+            this.Text = "人口增长趋势";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
@@ -255,12 +223,9 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dgDataSource;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtIncreaseRate;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown txtEndYear;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnSimulate;
     }

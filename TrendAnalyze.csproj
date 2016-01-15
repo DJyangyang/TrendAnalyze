@@ -58,20 +58,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmGDP.cs">
+    <Compile Include="frmTEMP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGDP.designer.cs">
-      <DependentUpon>frmGDP.cs</DependentUpon>
+    <Compile Include="frmTEMP.designer.cs">
+      <DependentUpon>frmTEMP.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGDPCmd.cs" />
-    <Compile Include="frmPOP.cs">
+    <Compile Include="frmTEMPCmd.cs" />
+    <Compile Include="frmPRE.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPOP.designer.cs">
-      <DependentUpon>frmPOP.cs</DependentUpon>
+    <Compile Include="frmPRE.designer.cs">
+      <DependentUpon>frmPRE.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPOPCmd.cs" />
+    <Compile Include="frmPRECmd.cs" />
     <Compile Include="frmTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,11 +83,11 @@
     <Compile Include="TrendAnalyzeMenuBar.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmGDP.resx">
-      <DependentUpon>frmGDP.cs</DependentUpon>
+    <EmbeddedResource Include="frmTEMP.resx">
+      <DependentUpon>frmTEMP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPOP.resx">
-      <DependentUpon>frmPOP.cs</DependentUpon>
+    <EmbeddedResource Include="frmPRE.resx">
+      <DependentUpon>frmPRE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTable.resx">
       <DependentUpon>frmTable.cs</DependentUpon>
