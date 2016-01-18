@@ -28,11 +28,11 @@ namespace TrendAnalyze
             switch (pos)
             {
                 case 0:
-                    itemDef.ID = "TrendAnalyze.frmGDPCmd";
+                    itemDef.ID = "TrendAnalyze.frmTEMPCmd";
                     itemDef.Group = false;
                     break;
                 case 1:
-                    itemDef.ID = "TrendAnalyze.frmPOPCmd";
+                    itemDef.ID = "TrendAnalyze.frmPRECmd";
                     itemDef.Group = false;
                     break;
                 //case 2:
